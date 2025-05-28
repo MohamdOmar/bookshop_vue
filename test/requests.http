@@ -13,9 +13,6 @@ GET {{server}}/browse
 GET {{server}}/browse/$metadata
 {{me}}
 
-###
-GET {{server}}/browse/Books/201/stock/$value
-
 
 ### ------------------------------------------------------------------------
 # Browse Books as any user

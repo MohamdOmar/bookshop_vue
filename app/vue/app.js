@@ -1,82 +1,89 @@
-/* globals Vue */
-
-// const GET = (...ttl) => axios.get (url4(ttl)) .then (res => res.data.value || res.data)
-// const POST = (...ttl) => ({ with: data => axios.post (url4(ttl), data) .then (res => res.data.value || res.data) })
-const GET = (...ttl) => fetch (url4(ttl)) .then (get_data)
-const POST = (...ttl) => ({
-  with: data => fetch (url4(ttl), {
-    method: 'POST',
-    body: JSON.stringify(data),
-    headers: { 'Content-Type': 'application/json' }
-  }) .then (get_data)
-})
-const url4 = ttl => (ttl[0][0][0] === '/' ? '' : '/browse/') + String.raw(...ttl)
-const get_data = res => res.json() .then (d => {
-  if (res.ok) return d.value??d; else throw Object.assign (new Error, d.error || {
-    message: res.statusText,
-    code: res.status,
-  })
-})
+/* global Vue axios */ //> from vue.html
 const $ = sel => document.querySelector(sel)
+const GET = (url) => axios.get('/browse'+url)
+const POST = (cmd,data) => axios.post('/browse'+cmd,data)
 
 const books = Vue.createApp ({
 
-  data() {
-    return {
-      list: [],
-      book: undefined,
-      order: { quantity:1, succeeded:'', failed:'' },
-      user: undefined
-    }
-  },
-
-  methods: {
-
-    search: ({target:{value:v}}) => books.fetch(v && '&$search='+v),
-
-    async fetch (etc='') {
-      books.list = await GET `ListOfBooks?$expand=genre($select=name),currency($select=symbol)${etc}`
-    },
-
-    async inspect (eve, index = eve.currentTarget.rowIndex-1) {
-      const book = books.list [index]
-      const details = await GET `Books/${book.ID}?$select=descr,stock,image`
-      books.book = { ...book, ...details }
-      books.order = { quantity:1 }
-      setTimeout (()=> $('form > input').focus(), 111)
-    },
-
-    async submitOrder () {
-      const {book,order} = books, quantity = order.quantity
-      try {
-        const {stock} = await POST `submitOrder` .with ({ quantity, book: book.ID })
-        book.stock = stock
-        books.order = { quantity, succeeded: `Successfully ordered ${quantity} item(s).` }
-      } catch (e) {
-        books.order = { quantity, failed: e.message }
+    data() {
+      return {
+        list: [],
+        book: undefined,
+        order: { quantity:1, succeeded:'', failed:'' },
+        user: undefined
       }
     },
 
-    async login() {
-      try {
-        const { data:user } = await axios.post('/user/login',{})
-        if (user.id !== 'anonymous') books.user = user
-      } catch (err) { books.user = { id: err.message } }
-    },
+    methods: {
 
-    async getUserInfo() {
-      try {
-        const user = await GET `/user/me`
-        if (user.id !== 'anonymous') books.user = user
-      } catch (err) { books.user = { id: err.message } }
-    },
-  }
+        search: ({target:{value:v}}) => books.fetch(v && '&$search='+v),
+
+        async fetch (etc='') {
+            const {data} = await GET(`/ListOfBooks?$expand=genre($select=name),currency($select=symbol)${etc}`)
+            books.list = data.value
+        },
+
+        async inspect (eve) {
+            const book = books.book = books.list [eve.currentTarget.rowIndex-1]
+            const res = await GET(`/Books/${book.ID}?$select=descr,stock,image`)
+            Object.assign (book, res.data)
+            books.order = { quantity:1 }
+            setTimeout (()=> $('form > input').focus(), 111)
+        },
+
+        async submitOrder () {
+            const {book,order} = books, quantity = parseInt (order.quantity) || 1 // REVISIT: Okra should be less strict
+            try {
+                const res = await POST(`/submitOrder`, { quantity, book: book.ID })
+                book.stock = res.data.stock
+                books.order = { quantity, succeeded: `Successfully ordered ${quantity} item(s).` }
+            } catch (e) {
+                books.order = { quantity, failed: e.response.data.error ? e.response.data.error.message : e.response.data }
+            }
+        },
+
+        async login() {
+            try {
+                const { data:user } = await axios.post('/user/login',{})
+                if (user.id !== 'anonymous') books.user = user
+            } catch (err) { books.user = { id: err.message } }
+        },
+
+        async getUserInfo() {
+            try {
+                const { data:user } = await axios.get('/user/me')
+                if (user.id !== 'anonymous') books.user = user
+            } catch (err) { books.user = { id: err.message } }
+        },
+    }
 }).mount('#app')
 
 books.getUserInfo()
 books.fetch() // initially fill list of books
 
-// hide user info on request
-document.addEventListener('keydown', event => {
-  if (event.key === 'u')  books.user = undefined
+document.addEventListener('keydown', (event) => {
+    // hide user info on request
+    if (event.key === 'u')  books.user = undefined
 })
+
+axios.interceptors.request.use(csrfToken)
+function csrfToken (request) {
+    if (request.method === 'head' || request.method === 'get') return request
+    if ('csrfToken' in document) {
+        request.headers['x-csrf-token'] = document.csrfToken
+        return request
+    }
+    return fetchToken().then(token => {
+        document.csrfToken = token
+        request.headers['x-csrf-token'] = document.csrfToken
+        return request
+    }).catch(() => {
+        document.csrfToken = null // set mark to not try again
+        return request
+    })
+
+    function fetchToken() {
+        return axios.get('/', { headers: { 'x-csrf-token': 'fetch' } })
+        .then(res => res.headers['x-csrf-token'])
+    }
+}
