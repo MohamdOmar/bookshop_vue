@@ -4,11 +4,11 @@ This is our primer sample for [Getting Started in a Nutshell](https://cap.cloud.
 
 ## Get and Run
 
+Assumed you've `@sap/cds-dk` [installed globally](https://cap.cloud.sap/docs/get-started):
+
 ```sh
 git clone https://github.com/capire/bookshop
-cd bookshop
-npm install
-npm run watch
+cds watch bookshop
 ```
 
 ## Hypothetical Use Cases
