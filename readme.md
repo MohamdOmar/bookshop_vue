@@ -2,7 +2,6 @@
 
 This is our primer sample for [Getting Started in a Nutshell](https://cap.cloud.sap/docs/get-started/in-a-nutshell).
 
-Assumed you have [`@sap/cds-dk` installed globally](https://cap.cloud.sap/docs/get-started)
 
 ### Get it
 
@@ -10,19 +9,21 @@ Assumed you have [`@sap/cds-dk` installed globally](https://cap.cloud.sap/docs/g
   git clone https://github.com/capire/bookshop
   ```
 
-### Run
+### Run  [^1]
 
   ```sh
   cds watch bookshop
   ```
 
-### Reuse
+### Reuse [^2]
 
   ```sh
   npm add @capire/common
   ```
-  > Requires `@capire:registry=https://npm.pkg.github.com` in your `.npmrc`.
 
 ### Deploy
 
 > Coming soon...
+
+[^1]: Assumes you have [`@sap/cds-dk` installed globally](https://cap.cloud.sap/docs/get-started)
+[^2]: Requires `@capire:registry=https://npm.pkg.github.com` in your `.npmrc`
