@@ -2,7 +2,7 @@
   "name": "@capire/bookshop",
   "version": "2.0.1",
   "description": "A simple self-contained bookshop service.",
-  "repository": "https://github.com/capire/bookshop.git",
+  "repository": "https://github.com/capire/bookshop",
   "files": [
     "app",
     "srv",
