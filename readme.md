@@ -2,19 +2,37 @@
 
 This is our primer sample for [Getting Started in a Nutshell](https://cap.cloud.sap/docs/get-started/in-a-nutshell).
 
+
 ## Get and Run
 
-Assumed you've `@sap/cds-dk` [installed globally](https://cap.cloud.sap/docs/get-started):
+  Assumed you've `@sap/cds-dk` [installed globally](https://cap.cloud.sap/docs/get-started):
 
-```sh
-git clone https://github.com/capire/bookshop
-cds watch bookshop
+  ```sh
+  git clone https://github.com/capire/bookshop
+  cds watch bookshop
+  ```
+  > then open http://localhost:4004 (Cmd/Ctrl+click on the link in the log output)
+
+
+## Develop
+
+  Assumed you use VS Code with CLI command enabled
+  
+  ```sh
+  code bookshop
+  ```
+
+
+## Reuse
+
+Add this to your local or global `.npmrc`:
+
+```properties
+@capire:registry=https://npm.pkg.github.com/
 ```
 
-## Hypothetical Use Cases
+Then install bookshop using `npm` as usual:
 
-1. Build a service that allows to browse _Books_ and _Authors_.
-2. Books have assigned _Genres_, which are organized hierarchically.
-3. All users may browse books without login.
-4. All entries are maintained by Administrators.
-5. End users may order books (the actual order mgmt being out of scope).
+```sh
+npm add @capire/bookshop
+```
