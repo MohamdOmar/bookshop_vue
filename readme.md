@@ -1,6 +1,6 @@
 # Bookshop Getting Started Sample
 
-This stand-alone sample introduces the essential tasks in the development of CAP-based services as also covered in the [Getting Started guide in capire](https://cap.cloud.sap/docs/get-started/in-a-nutshell).
+This is our primer sample for [Getting Started in a Nutshell](https://cap.cloud.sap/docs/get-started/in-a-nutshell).
 
 ## Get and Run
 
