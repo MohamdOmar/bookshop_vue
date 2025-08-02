@@ -1,38 +1,28 @@
-# Bookshop Getting Started Sample
+# @capire/bookshop
 
 This is our primer sample for [Getting Started in a Nutshell](https://cap.cloud.sap/docs/get-started/in-a-nutshell).
 
+Assumed you have [`@sap/cds-dk` installed globally](https://cap.cloud.sap/docs/get-started)
 
-## Get and Run
-
-  Assumed you've `@sap/cds-dk` [installed globally](https://cap.cloud.sap/docs/get-started):
+### Get it
 
   ```sh
   git clone https://github.com/capire/bookshop
+  ```
+
+### Run
+
+  ```sh
   cds watch bookshop
   ```
-  > then open http://localhost:4004 (Cmd/Ctrl+click on the link in the log output)
 
+### Reuse
 
-## Develop
-
-  Assumed you use VS Code with CLI command enabled
-  
   ```sh
-  code bookshop
+  npm add @capire/common
   ```
+  > Requires `@capire:registry=https://npm.pkg.github.com` in your `.npmrc`.
 
+### Deploy
 
-## Reuse
-
-Add this to your local or global `.npmrc`:
-
-```properties
-@capire:registry=https://npm.pkg.github.com/
-```
-
-Then install bookshop using `npm` as usual:
-
-```sh
-npm add @capire/bookshop
-```
+> Coming soon...
