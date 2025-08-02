@@ -14,15 +14,20 @@ This is our primer sample for [Getting Started in a Nutshell](https://cap.cloud.
   ```sh
   cds watch bookshop
   ```
-  > Assumes you have [`@sap/cds-dk` installed globally](https://cap.cloud.sap/docs/get-started)
 
 ### Reuse
 
   ```sh
   npm add @capire/common
   ```
-  > Requires `@capire:registry=https://npm.pkg.github.com` in your `.npmrc`
+<details>
+  <summary><i> Requires this in your .npmrc: </i></summary>
+  
+  ```java
+  @capire:registry=https://npm.pkg.github.com
+  ```
+</details>
 
 ### Deploy
 
-> Coming soon...
+Coming soon...
