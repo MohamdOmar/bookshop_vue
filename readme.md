@@ -27,5 +27,4 @@ npm run watch
 | [Providing & Consuming Providers](https://cap.cloud.sap/docs/guides/providing-services)                   | http://localhost:4004                |
 | [Using Databases](https://cap.cloud.sap/docs/guides/databases)                                            | [`./db/data/*.csv`](./db/data)       |
 | [Adding Custom Logic](https://cap.cloud.sap/docs/guides/providing-services#adding-custom-logic)           | [`./srv/*.js`](./srv)                |
-| Adding Tests                                                                                              | [`./test`](./test)                   |
 | [Sharing for Reuse](https://cap.cloud.sap/docs/guides/extensibility/composition)                          | [`./index.cds`](./index.cds)         |
