@@ -9,21 +9,20 @@ This is our primer sample for [Getting Started in a Nutshell](https://cap.cloud.
   git clone https://github.com/capire/bookshop
   ```
 
-### Run  [^1]
+### Run
 
   ```sh
   cds watch bookshop
   ```
+  > Assumes you have [`@sap/cds-dk` installed globally](https://cap.cloud.sap/docs/get-started)
 
-### Reuse [^2]
+### Reuse
 
   ```sh
   npm add @capire/common
   ```
+  > Requires `@capire:registry=https://npm.pkg.github.com` in your `.npmrc`
 
 ### Deploy
 
 > Coming soon...
-
-[^1]: Assumes you have [`@sap/cds-dk` installed globally](https://cap.cloud.sap/docs/get-started)
-[^2]: Requires `@capire:registry=https://npm.pkg.github.com` in your `.npmrc`
