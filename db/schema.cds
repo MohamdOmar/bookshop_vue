@@ -31,8 +31,3 @@ entity Genres : sap.common.CodeList {
 }
 
 type Price : Decimal(9,2);
-
-
-// ------------------------------------------------------------------
-// temporary workaround for reuse in fiori sample and hana deployment
-annotate Books with @fiori.draft.enabled;
