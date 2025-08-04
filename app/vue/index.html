@@ -13,9 +13,9 @@
   <script type="module" src="app.js"></script>
   <style>
     .hovering tr:hover td { color:cyan; background: #123; cursor: pointer; }
-    .rating-stars { color:teal }
     .succeeded { color:teal }
     .failed { color:red }
+    .stars { color:teal }
   </style>
 </head>
 
@@ -26,29 +26,28 @@
 
     <input type="text" placeholder="Search..." @input="search">
 
-    <table id='books' class="hovering">
+    <table class="hovering">
       <thead>
         <th> Book </th>
         <th> Author </th>
         <th> Genre </th>
         <th> Rating </th>
         <th> Price </th>
+        <th> Stock </th>
       </thead>
-      <tr v-for="book in list" v-bind:id="book.ID" v-on:click="inspect">
-        <td>{{ book.title }}</td>
-        <td>{{ book.author }}</td>
-        <td>{{ book.genre.name }}</td>
-        <td class="rating-stars">
-          {{ ('★'.repeat(Math.round(book.rating))+'☆☆☆☆☆').slice(0,5) }} ({{ book.numberOfReviews }})
-        </td>
-        <td>{{ book.currency && book.currency.symbol }} {{ book.price }}</td>
+      <tr v-for="each, index in books" v-on:click="inspect(index)">
+        <td>{{ each.title }}</td>
+        <td>{{ each.author }}</td>
+        <td>{{ each.genre.name }}</td>
+        <td class="stars"> {{ Ratings[each.rating] }} ({{ each.numberOfReviews }}) </td>
+        <td>{{ each.currency && each.currency.symbol }} {{ each.price }}</td>
+        <td>{{ each.stock }}</td>
       </tr>
     </table>
 
     <div v-if="book">
       <label style="text-align:right">
-        <span class="succeeded"> {{ order.succeeded }} </span>
-        <span class="failed"> {{ order.failed }} </span>
+        <span :class="message"> {{ message.succeeded || message.failed }} </span>
         &nbsp;&nbsp; {{ book.stock }} in stock
       </label>
       <form @submit.prevent="submitOrder" style="float:right; display:flex; flex-direction:row-reverse">
