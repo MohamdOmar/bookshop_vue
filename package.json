@@ -19,5 +19,6 @@
   "scripts": {
     "start": "cds-serve",
     "watch": "cds watch"
-  }
+  },
+  "license": "Apache-2.0"
 }
