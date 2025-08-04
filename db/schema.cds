@@ -1,21 +1,20 @@
-using { Currency, managed, sap } from '@sap/cds/common';
+using { Currency, cuid, managed, sap } from '@sap/cds/common';
 namespace sap.capire.bookshop;
 
 entity Books : managed {
   key ID   : Integer;
-  title    : localized String(111)  @mandatory;
-  descr    : localized String(1111);
   author   : Association to Authors @mandatory;
+  title    : localized String @mandatory;
+  descr    : localized String;
   genre    : Association to Genres;
   stock    : Integer;
   price    : Price;
   currency : Currency;
-  image    : LargeBinary @Core.MediaType: 'image/png';
 }
 
-entity Authors : managed {
+entity Authors : cuid, managed {
   key ID       : Integer;
-  name         : String(111) @mandatory;
+  name         : String @mandatory;
   dateOfBirth  : Date;
   dateOfDeath  : Date;
   placeOfBirth : String;
@@ -24,8 +23,7 @@ entity Authors : managed {
 }
 
 /** Hierarchically organized Code List for Genres */
-entity Genres : sap.common.CodeList {
-  key ID   : UUID;
+entity Genres : cuid, sap.common.CodeList {
   parent   : Association to Genres;
   children : Composition of many Genres on children.parent = $self;
 }

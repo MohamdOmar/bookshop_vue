@@ -1,3 +1,4 @@
+namespace sap.capire.bookshop; //> important for reflection, e.g. in cds repl
 
 // Temporary workaround for this situation:
 // - Fiori apps in bookstore annotate Books with @fiori.draft.enabled.
