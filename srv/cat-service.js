@@ -25,12 +25,6 @@ class CatalogService extends cds.ApplicationService { init() {
     return book
   })
 
-  // Emit event when an order has been submitted
-  this.after('submitOrder', async (_,req) => {
-    let { book, quantity } = req.data
-    await this.emit('OrderedBook', { book, quantity, buyer: req.user.id })
-  })
-
   // Delegate requests to the underlying generic service
   return super.init()
 }}
