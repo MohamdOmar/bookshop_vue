@@ -4,19 +4,13 @@
 <head>
   <title> Capire Books </title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/primitive-ui/dist/css/main.css">
-  <script type="importmap">
-    { "imports": {
-      "vue": "https://cdn.jsdelivr.net/npm/vue@3/dist/vue.esm-browser.prod.js",
-      "axios": "https://cdn.jsdelivr.net/npm/axios/dist/esm/axios.min.js"
-    } }
-  </script>
-  <script type="module" src="app.js"></script>
   <style>
     .hovering tr:hover td { color:cyan; background: #123; cursor: pointer; }
     .succeeded { color:teal }
     .failed { color:red }
-    .stars { color:teal }
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js"></script>
+  <script type="module" src="app.js"></script>
 </head>
 
 <body class="small-container", style="margin-top: 70px;">
@@ -24,7 +18,7 @@
 
     <h1> Capire Books </h1>
 
-    <input type="text" placeholder="Search..." @input="search">
+    <input type="text" placeholder="Search..." @input="fetch($event.target.value)">
 
     <table class="hovering">
       <thead>
@@ -33,15 +27,13 @@
         <th> Genre </th>
         <th> Rating </th>
         <th> Price </th>
-        <th> Stock </th>
       </thead>
-      <tr v-for="each, index in books" v-on:click="inspect(index)">
-        <td>{{ each.title }}</td>
-        <td>{{ each.author }}</td>
-        <td>{{ each.genre.name }}</td>
-        <td class="stars"> {{ Ratings[each.rating] }} ({{ each.numberOfReviews }}) </td>
-        <td>{{ each.currency && each.currency.symbol }} {{ each.price }}</td>
-        <td>{{ each.stock }}</td>
+      <tr v-for="b,i in books" @click="inspect(i)">
+        <td>{{ b.title }}</td>
+        <td>{{ b.author }}</td>
+        <td>{{ b.genre?.name || b.genre }}</td>
+        <td>{{ stars[b.rating||1+(4-i)%5] }} ({{ b.reviews||b.ID%49 }}) </td>
+        <td>{{ b.currency?.symbol || b.currency }} {{ b.price }}</td>
       </tr>
     </table>
 
