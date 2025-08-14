@@ -20,7 +20,7 @@ cds watch bookshop
 ### Reuse
 
 ```sh
-npm add @capire/common
+npm add @capire/bookshop
 ```
 <details>
   <summary><i> Requires this in your .npmrc: </i></summary>
