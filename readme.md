@@ -25,12 +25,16 @@ npm add @capire/bookshop
 
 
 <details>
-  <summary><i> Using GitHub Packages... </i></summary>
-  
-  We use the npm registry provided by [GitHub Packages](https://docs.github.com/packages/), which requires to log in once like that:
+<summary>    
+
+  _Requires to login once to [GitHub Packages](https://docs.github.com/packages) like that: (&rarr; click to show)_
+
+</summary>
+
   ```sh
   npm login --scope=@capire --registry=https://npm.pkg.github.com
   ```
+
 </details>
 
 
