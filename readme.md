@@ -17,29 +17,6 @@ cds watch bookshop
 ```
 
 
-### Reuse
-
-```sh
-npm add @capire/bookshop
-```
-
-
-<details>
-<summary>    
-
-  _Requires to login once to [GitHub Packages](https://docs.github.com/packages) like that: (&rarr; click to show)_
-
-</summary>
-
-  ```sh
-  npm login --scope=@capire --registry=https://npm.pkg.github.com
-  ```
-
-  As password you're using a Personal Access Token (classic) with `read:packages` scope. Read more about it in [Authenticating to GitHub Packages](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#authenticating-to-github-packages)
-
-</details>
-
-
 ### Get Help
 
 - Visit the [*capire* docs](https://cap.cloud.sap) to learn about CAP.
