@@ -10,14 +10,14 @@ git clone https://github.com/capire/bookshop
 ```
 
 
-### Run
+### Run it
 
 ```sh
 cds watch bookshop
 ```
 
 
-### Get Help
+### Get help
 
 - Visit the [*capire* docs](https://cap.cloud.sap) to learn about CAP.
 - Especially [*Getting Started in a Nutshell*](https://cap.cloud.sap/docs/get-started/in-a-nutshell).
