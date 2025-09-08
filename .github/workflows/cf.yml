@@ -50,7 +50,7 @@ jobs:
         id: route
         shell: bash
         run: |
-          host=$(cf app "${APP_NAME}" | awk '/routes:/ {print $2}' | sed -E 's#^https?://##; s/,.*$//')
+          host=$(cf app "${APP_NAME}" | awk '/routes:/ {print $2}')
           echo "url=https://$host" >> "$GITHUB_OUTPUT"
     environment:
       name: ${{ inputs.environment || 'Staging' }}
