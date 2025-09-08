@@ -4,8 +4,6 @@ on:
   workflow_call:
     inputs:
       environment:
-        description: 'Deployment environment name'
-        required: false
         default: Staging
         type: string
   workflow_dispatch:
