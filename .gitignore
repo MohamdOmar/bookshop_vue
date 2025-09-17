@@ -4,3 +4,4 @@ node_modules
 .env
 gen/
 *.mta
+.deploy
